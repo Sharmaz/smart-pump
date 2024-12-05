@@ -1,5 +1,7 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
+
+import { db } from "./db/index.js";
 
 const router = express.Router();
 const PORT = process.env.PORT || 3000;
@@ -21,4 +23,5 @@ const app = createApp();
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
+  console.log(db.data);
 });
