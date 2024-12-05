@@ -16,5 +16,5 @@ jobs:
         with:
           node-version: 20
       - run: npm --prefix ./server install
-      - run: npm --prefix ./server run lint
+      - run: npm run lint
         working-directory: ./server
