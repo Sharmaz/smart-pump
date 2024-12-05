@@ -6,7 +6,9 @@ export default {
   transformIgnorePatterns: [
     '[/\\\\\\\\]node_modules[/\\\\\\\\].+\\\\.(js|ts)$'
   ],
-  transform: {},
+  transform: {
+    "\\.[jt]sx?$": "babel-jest",
+  },
   coveragePathIgnorePatterns: [
     "/node_modules/"
   ]
