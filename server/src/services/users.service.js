@@ -11,6 +11,11 @@ class UsersService {
     return user;
   }
 
+  async findByEmail(email) {
+    const user = await db.data.users.find((user) => user.email === email);
+    return user;
+  }
+
   async update(userId, changes) {
     const user = await this.findOne(userId);
     const updatedUser = { ...user, ...changes };

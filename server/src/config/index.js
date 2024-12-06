@@ -1,8 +1,11 @@
 // Using env variables.
-require('dotenv').config()
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const config = {
   port: process.env.PORT || 3000,
+  jwtSecret: process.env.JWT_SECRET,
 };
 
-module.exports = config;
+export default config;
