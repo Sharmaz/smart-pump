@@ -1,4 +1,4 @@
-name: Server Unit Tests
+name: Client Unit Tests
 on:
   pull_request:
     branches: '**'
