@@ -21,5 +21,6 @@ module.exports = {
   ],
   rules: {
     'import/no-extraneous-dependencies': 0,
+    'no-underscore-dangle': 0,
   },
 };
