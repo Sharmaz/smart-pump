@@ -14,12 +14,11 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
-      - name: Install and Build 🔧
+      - run: npm --prefix ./client install
+      - run: npm run build
         working-directory: ./client
-        run: |
-          npm --prefix ./client ci
-          npm run build
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist
+          folder: client/dist
