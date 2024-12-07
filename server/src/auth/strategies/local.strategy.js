@@ -21,7 +21,6 @@ const LocalStrategy = new Strategy(
       if (!isMatch) {
         done(null, false, { message: 'Incorrect password.' });
       }
-      delete user.password;
       done(null, user);
     } catch (error) {
       done(error, false);

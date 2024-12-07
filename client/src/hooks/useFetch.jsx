@@ -1,8 +1,8 @@
 import { useEffect, useState, useCallback } from 'react';
 
-const useFetch = (url, options, { immediate = false } = {}) => {
+const useFetch = (url, options, { immediate = false }) => {
   const [data, setData] = useState([]);
-  const [user, setUser] = useState({});
+  const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -18,7 +18,7 @@ const useFetch = (url, options, { immediate = false } = {}) => {
       if (dataOptions.method === 'GET') {
         setData(json);
       } else {
-        setUser(json);
+        setUserData(json);
       }
       setLoading(false);
       setError('');
@@ -39,7 +39,8 @@ const useFetch = (url, options, { immediate = false } = {}) => {
   return {
     data,
     setData,
-    user,
+    userData,
+    setUserData,
     loading,
     error,
     fetchData,

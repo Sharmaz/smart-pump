@@ -1,11 +1,13 @@
 import { useContext, useState } from 'react';
-
+import { Link } from 'react-router-dom';
 import { UserContext } from './User';
 import UserImage from './assets/images/user.svg';
+import ProfileForm from './components/ProfileForm';
 
 function App() {
   const { user } = useContext(UserContext);
   const [showBalance, setShowBalance] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const {
     isActive,
@@ -17,7 +19,7 @@ function App() {
     email,
     phone,
     address,
-  } = user;
+  } = user.user;
 
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-white">
@@ -36,9 +38,18 @@ function App() {
           className={`${!isActive ? 'bg-slate-600' : 'bg-blue-500'} text-xl text-white px-4 py-2 m-4 rounded-lg weight-bold`}
           disabled={!isActive}
           type="button"
+          onClick={() => setShowModal(!showModal)}
         >
           Edit
         </button>
+        <Link to="/">
+          <button
+            className="bg-red-500 text-xl text-white px-4 py-2 m-4 rounded-lg weight-bold"
+            type="button"
+          >
+            Logout
+          </button>
+        </Link>
       </div>
       <table className="table-auto md:text-xl">
         <tbody>
@@ -86,6 +97,13 @@ function App() {
           </tr>
         </tbody>
       </table>
+      {
+        showModal
+          ? (
+            <ProfileForm user={user} setShowModal={setShowModal} />
+          )
+          : null
+      }
     </div>
   );
 }

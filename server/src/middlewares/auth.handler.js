@@ -11,7 +11,7 @@ function checkUserId(req, res, next) {
 
 function checkIsActive(req, res, next) {
   const { user } = req;
-  if (user.isActive) {
+  if (user.active) {
     next();
   } else {
     res.status(401).json({ message: 'Unauthorized' });

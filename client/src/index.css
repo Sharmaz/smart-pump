@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 tr {
-  @apply odd:bg-slate-100 even:bg-slate-200 h-20 md:h-24;
+  @apply odd:bg-slate-100 even:bg-slate-200 h-16 md:h-24;
 }
 
 td {
