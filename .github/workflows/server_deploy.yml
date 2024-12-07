@@ -30,7 +30,7 @@ jobs:
               echo "Deployment succesful"
               cd server || exit
               npm install
-              echo -e "NODE_ENV=${{secrets.NODE_ENV}}\nPORT=${{secrets.PORT}}" >.env
+              echo -e "NODE_ENV=${{secrets.NODE_ENV}}\nPORT=${{secrets.PORT}}\nJWT_SECRET=${{secrets.JWT_SECRET}}" >.env
               pm2 start ./src/index.js --name smart-pump-backend
             else
               echo "Directory not found"
@@ -39,6 +39,6 @@ jobs:
               cd smart-pump || exit
               cd server || exit
               npm install
-              echo -e "NODE_ENV=${{secrets.NODE_ENV}}\nPORT=${{secrets.PORT}}" >.env
+              echo -e "NODE_ENV=${{secrets.NODE_ENV}}\nPORT=${{secrets.PORT}}\nJWT_SECRET=${{secrets.JWT_SECRET}}" >.env
               pm2 start ./src/index.js --name smart-pump-backend
             fi
