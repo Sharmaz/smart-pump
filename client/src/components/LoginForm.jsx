@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
+import { UserContext } from '../User';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -29,6 +31,7 @@ function LoginForm() {
 
   useEffect(() => {
     if (user.user) {
+      setUser(user.user);
       const id = user.user._id;
       navigate(`/users/${id}`, { replace: true });
     }

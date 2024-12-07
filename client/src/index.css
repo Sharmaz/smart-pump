@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+tr {
+  @apply odd:bg-slate-100 even:bg-slate-200 h-20 md:h-24;
+}
+
+td {
+  @apply py-2 px-4;
+}
