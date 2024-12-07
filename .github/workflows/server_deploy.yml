@@ -1,0 +1,44 @@
+name: Deploy
+on: 
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy NodeJS
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{secrets.SSH_HOST}}
+          key: ${{secrets.SSH_KEY}}
+          username: ${{secrets.SSH_USERNAME}}
+          password: ${{secrets.SSH_PASSWORD}}
+
+          script: |
+            cd /var/www || exit
+            if [[ -d "/var/www/smart-pump" ]]; then
+              echo "Directory smart-pump exists"
+              pm2 stop smart-pump-backend
+              pm2 delete smart-pump-backend
+              cd smart-pump || exit
+              git pull origin main
+              echo "Deployment succesful"
+              cd server || exit
+              npm install
+              echo -e "NODE_ENV=${{secrets.NODE_ENV}}\nPORT=${{secrets.PORT}}" >.env
+              pm2 start ./src/index.js --name smart-pump-backend
+            else
+              echo "Directory not found"
+              git clone git@github.com:Sharmaz/smart-pump.git
+              echo "Deployment succesful"
+              cd smart-pump || exit
+              cd server || exit
+              npm install
+              echo -e "NODE_ENV=${{secrets.NODE_ENV}}\nPORT=${{secrets.PORT}}" >.env
+              pm2 start ./src/index.js --name smart-pump-backend
+            fi
