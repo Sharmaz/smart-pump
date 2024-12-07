@@ -1,14 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import config from '../config';
 import useFetch from '../hooks/useFetch';
+import { UserContext } from '../User';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
+  const { baseUrl } = config;
 
-  const url = 'http://localhost:3000/api/v1/auth/login';
+  const url = `${baseUrl}/api/v1/auth/login`;
   const options = {
     method: 'POST',
     headers: {
@@ -21,18 +25,19 @@ function LoginForm() {
   };
 
   const {
-    user,
+    userData,
     loading,
     error,
     fetchData,
   } = useFetch(url, options, { immediate: false });
 
   useEffect(() => {
-    if (user.user) {
-      const id = user.user._id;
+    if (userData.user) {
+      setUser(userData);
+      const id = userData.user._id;
       navigate(`/users/${id}`, { replace: true });
     }
-  }, [user]);
+  }, [userData]);
 
   if (error) {
     return <div>Error</div>;

@@ -22,5 +22,6 @@ module.exports = {
   rules: {
     'import/no-extraneous-dependencies': 0,
     'no-underscore-dangle': 0,
+    'react/forbid-prop-types': 0,
   },
 };
