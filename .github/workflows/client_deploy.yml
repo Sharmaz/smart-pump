@@ -15,10 +15,10 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
       - name: Install and Build 🔧
+        working-directory: ./client
         run: |
           npm --prefix ./client ci
           npm run build
-        working-directory: ./client
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
