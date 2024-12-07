@@ -10,7 +10,7 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <User>
-      <BrowserRouter>
+      <BrowserRouter basename="/smart-pump">
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/users/:userId" element={<App />} />

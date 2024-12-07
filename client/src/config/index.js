@@ -1,5 +1,5 @@
 const config = {
-  baseUrl: 'https://smartpump.ivanrobles.pro',
+  baseUrl: 'https://smart-pump.ivanrobles.pro',
 };
 
 export default config;
